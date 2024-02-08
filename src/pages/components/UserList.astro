@@ -1,0 +1,26 @@
+{ Astro.props.users?.length>0 && <table class="border">
+  <thead>
+    <tr class="border rounded">
+      <th  class="px-2">Id</th>
+      <th  class="px-2">First Name</th>
+      <th  class="px-2">Last Name</th>
+      <th  class="px-2">Gender</th>
+      <th  class="px-2">Job Title</th>
+      <th  class="px-2">Job Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    {
+      Astro.props.users.map((user) => (
+        <tr class="border rounded">
+          <th>{user.id}</th>
+          <th>{user.firstName}</th>
+          <th>{user.lastName}</th>
+          <th>{user.gender}</th>
+          <th>{user.jobTitle}</th>
+          <th>{user.jobDescriptor}</th>
+        </tr>
+      ))
+    }
+  </tbody>
+</table>}

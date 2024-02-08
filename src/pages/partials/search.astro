@@ -1,0 +1,26 @@
+---
+import users from "../components/users";
+import UserList from "../components/userlist.astro";
+import type { transpileModule } from "typescript";
+
+export const partial = true;
+
+const query = (Astro.url.searchParams.get("search") || "").toLowerCase().trim();
+
+const searchResults = query.length===0? [] : users
+  .filter(
+    (u) =>
+      String(u.firstName).toLowerCase().includes(query) ||
+      String(u.lastName).toLowerCase().includes(query) ||
+      String(u.jobDescriptor).toLowerCase().includes(query) ||
+      String(u.jobTitle).toLowerCase().includes(query) ||
+      String(u.gender).toLowerCase().includes(query)
+  )
+  .slice(0, 10);
+
+console.log("searchResults =>", searchResults);
+---
+
+<div>
+  {searchResults ? <UserList users={searchResults} /> : ""}
+</div>

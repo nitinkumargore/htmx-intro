@@ -1,0 +1,20 @@
+---
+// export const patrial = true;
+let count = 0;
+try{
+const data = await Astro.request.formData();
+count = +(data.get('count') || 0) + 1;
+}catch(err){
+console.log('In counter.astro and Error=>',err)
+}
+---
+{ count>0 && <div id="anotherCounter" hx-swap-oob="true">
+{count}
+</div>}
+
+<form id="counter" hx-post="/partials/counter">
+  <input type="hidden" name="count" value={count} />
+  <button type="submit" class="bg-blue-800 text-white rounded-full px-3 py-3"
+    >Incerement - {count}</button
+  >
+</form>
